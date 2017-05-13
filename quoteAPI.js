@@ -2,16 +2,16 @@
 $(document).ready(function() {
 
     $("#getQuote").on("click", function(){
-      $.getJSON("http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en", function(json) {
+      $.getJSON("https://random-quote-generator.herokuapp.com/api/quotes/random", function(json) {
        	var html = "";
-       	var linkText = json.quoteText + " - ";
-       	$("#postTwitter").attr("href", "https://twitter.com/intent/tweet?text=" + linkText + json.quoteAuthor);
-       	html += "<strong>" + json.quoteText + "</strong>";
-        if (json.quoteAuthor.length == 0) {
+       	var linkText = json.quote + " - ";
+       	$("#postTwitter").attr("href", "https://twitter.com/intent/tweet?text=" + linkText + json.author);
+       	html += "<strong>" + json.quote + "</strong>";
+        if (json.author.length == 0) {
         	html+= "- Unknown";
         }
         else {
-        	html += " - " + json.quoteAuthor;
+        	html += " - " + json.author;
         }
 
         $("#quote").html(html);
